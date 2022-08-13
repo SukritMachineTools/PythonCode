@@ -1,0 +1,12 @@
+from pyModbusTCP.client import ModbusClient
+c=ModbusClient(host='192.168.1.77',port=502,auto_open=True)
+
+regs=c.read_holding_registers(4680,1)
+print("reading register values")
+
+
+if regs:
+    print(regs)
+else:
+    print("error")
+exit(10)
