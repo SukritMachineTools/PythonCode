@@ -1,0 +1,12 @@
+#Import the required library
+from tkinter import*
+#Create an instance of tkinter frame
+win= Tk()
+#Set the geometry
+win.geometry("750x250")
+#Disable the resizable Property
+win.resizable(False, False)
+#Create an Label Widget
+Label(win, text= "This Window can't be resized", font= ('Helvetica 15
+underline')).pack(pady=20)
+win.mainloop()
