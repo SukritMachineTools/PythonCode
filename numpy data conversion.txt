@@ -1,0 +1,4 @@
+import numpy
+tmp=numpy.array([16776,31457], numpy.int16)
+tmp.dtype = numpy.float16
+print (tmp)
