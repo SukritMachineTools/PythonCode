@@ -1,0 +1,7 @@
+import threading
+
+def printit():
+  threading.Timer(0.05, printit).start()
+  print ("Hello, World!")
+
+printit()
