@@ -1,0 +1,14 @@
+import tkinter as tk
+
+gui = tk.Tk()
+gui.geometry("200x200")
+
+def myFunction(event):
+    label["text"] = "You have pressed Enter"
+
+gui.bind('<Return>', myFunction)
+
+label = tk.Label(gui, text="")
+label.pack()
+
+gui.mainloop()
