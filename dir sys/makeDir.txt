@@ -1,0 +1,17 @@
+
+import os
+x="ok"
+directory = "GeeksforGeeks"
+
+# Parent Directory path
+parent_dir = "D:\Software Development\project2\dirs"
+
+# Path
+path = os.path.join(parent_dir, directory,x)
+
+# os.mkdir(path)
+# print("Directory '% s' created" % directory)
+newpath = path
+if not os.path.exists(newpath):
+    os.makedirs(newpath)
+    print("Directory '% s' created" % directory)
