@@ -1,0 +1,13 @@
+import pysoem
+
+master = pysoem.Master()
+
+master.open('\\Device\\NPF_{43350287-BA24-4787-A337-A02C7CE4AEA2}')
+
+if master.config_init() > 0:
+    for device in master.slaves:
+        print(f'Found Device {device.name}')
+else:
+    print('no device found')
+
+master.close()
