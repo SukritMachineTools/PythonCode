@@ -1,0 +1,38 @@
+
+import pysoem
+import struct
+import ctypes
+master = pysoem.Master()
+
+master.open('\\Device\\NPF_{43350287-BA24-4787-A337-A02C7CE4AEA2}')
+
+parasub1 = 0x00
+parasub2 = 0x00
+parasub3 = 0x00
+if master.config_init() > 0:
+    for device in master.slaves:
+        print(f'Found Device {device.name}')
+        # device.sdo_write(0x607A, 50, struct.pack('I', 1))
+        device.sdo_write(0x6060, 0, bytes(ctypes.c_uint8(1)))
+        device.sdo_write(0x607A, 0, bytes(ctypes.c_uint32(4294967292)))
+        device.sdo_write(0x6081, 0, bytes(ctypes.c_uint32(10)))
+        device.sdo_write(0x6083, 0, bytes(ctypes.c_uint32(2)))
+        device.sdo_write(0x6084, 0, bytes(ctypes.c_uint32(2)))
+
+        pav1 = ctypes.c_uint8.from_buffer_copy(device.sdo_read(index=0x6060, subindex=parasub1)).value
+        print(pav1)
+        pav2 = ctypes.c_uint32.from_buffer_copy(device.sdo_read(index=0x607A, subindex=parasub2)).value
+        print(pav2)
+        pav3 = ctypes.c_uint32.from_buffer_copy(device.sdo_read(index=0x6081, subindex=parasub3)).value
+        print(pav3)
+        pav4 = ctypes.c_uint32.from_buffer_copy(device.sdo_read(index=0x6083, subindex=parasub1)).value
+        print(pav4)
+        pav5 = ctypes.c_uint32.from_buffer_copy(device.sdo_read(index=0x6084, subindex=parasub2)).value
+        print(pav5)
+        # pav3 = ctypes.c_uint32.from_buffer_copy(device.sdo_read(index=paraind3, subindex=parasub3)).value
+        # print(pav3)
+        # device.sdo_write(0x607A, 0, struct.pack('I', 1))
+        # device.sdo_write(index=0x607A, subindex=0x00,data=50)
+        # device.sdo_write(index=0x6081,subindex=0x00, data=10, )
+        # device.sdo_write(index=0x6083,subindex=0x00, data=2, )
+        # device.sdo_write(index=0x6084,subindex=0x00, data=1,)
