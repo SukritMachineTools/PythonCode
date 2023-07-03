@@ -1,0 +1,36 @@
+#chatgpt to stop thread
+
+import tkinter as tk
+import threading
+
+class MyThread(threading.Thread):
+    def __init__(self, root):
+        threading.Thread.__init__(self)
+        self.root = root
+        self.running = True
+
+    def run(self):
+        while self.running:
+            # Your thread logic here
+            print("Thread is running...")
+
+    def stop(self):
+        self.running = False
+
+def main():
+    root = tk.Tk()
+    root.geometry("800x480")
+
+    thread = MyThread(root)
+    thread.start()
+
+    def stop_thread():
+        thread.stop()
+
+    stop_button = tk.Button(root, text="Stop Thread", command=stop_thread)
+    stop_button.pack()
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
